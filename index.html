@@ -102,11 +102,11 @@
           <div class="display-t">
             <div class="display-tc animate-box" data-animate-effect="fadeIn" id="tc">
               <h1>wyh ❤ xwy</h1>
-              <h2>我们结婚吧！！！</h2>
+              <h2>我们在一起吧！！！</h2>
               <h2>相识</h2>
               <div class="simply-countdown simply-countdown-one"></div>
               <h2>相爱</h2>
-              <canvas id="">「你是我永夜尽头不灭的星光，也是凛冬清晨第一缕融雪的暖阳。」</canvas>
+              <canvas id="result"></canvas>
             </div>
 
           </div>
@@ -573,7 +573,8 @@
   //相识
   var date_known = '2020-05-16 01:00:00';
   //相爱
-  var date_love = '2020-05-16 01:00:00';
+  const fixedDate = new Date('2023-01-01');
+	 fixedDate.setHours(0, 0, 0, 0); // 清除时间部分
   var toPn = "15210011497";
   var vip = "XXXX";
   var acceptText = "接受表白";
@@ -588,6 +589,23 @@
   date_love = date_love.substring(0,19);
   date_love = date_love.replace(/-/g,'/');
   var date_l = new Date(date_love)
+	
+function updateDays() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // 今天午夜
+
+            // 计算差值
+            const timeDiff = today - fixedDate;
+            const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+            // 显示结果
+            document.getElementById('result').textContent = 
+                `${daysDiff} 天`;
+        };
+	 // 页面加载立即计算
+        window.onload = updateDays;
+        // 每天自动更新（可选）
+        setInterval(updateDays, 1000 * 60 * 60); // 每小时检查一次
 
 
   // default example
